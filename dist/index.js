@@ -19,7 +19,7 @@ var useScript = function (url, onLoad) {
     }, [url]);
 };
 var ReactGodot = function (props) {
-    var script = props.script, pck = props.pck, wasm = props.wasm, _a = props.resize, resize = _a === void 0 ? false : _a, width = props.width, height = props.height, params = props.params;
+    var script = props.script, pck = props.pck, wasm = props.wasm, _a = props.resize, resize = _a === void 0 ? false : _a, width = props.width, height = props.height, params = props.config;
     var outerRef = useRef(null);
     var _b = useState(null), engine = _b[0], setEngine = _b[1];
     var _c = useState([width, height]), dimensions = _c[0], setDimensions = _c[1];
@@ -28,7 +28,7 @@ var ReactGodot = function (props) {
         setEngine(function () { return scope.Engine; });
     });
     useEffect(function () {
-        if (resize && outerRef.current) {
+        if (resize && outerRef.current != null) {
             setDimensions([
                 outerRef.current.clientWidth,
                 outerRef.current.clientHeight,
@@ -36,7 +36,7 @@ var ReactGodot = function (props) {
         }
     }, [resize, outerRef.current]);
     return (React.createElement("div", { id: "wrap", ref: outerRef },
-        React.createElement(AsyncLoading, null, engine && (React.createElement(ReactCanvas, { pck: pck, engine: engine, wasm: wasm, width: dimensions[0], height: dimensions[1], params: params })))));
+        React.createElement(AsyncLoading, null, engine && (React.createElement(ReactCanvas, { pck: pck, engine: engine, wasm: wasm, width: dimensions[0], height: dimensions[1], config: params })))));
 };
 export default ReactGodot;
 //# sourceMappingURL=index.js.map

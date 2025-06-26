@@ -7,14 +7,14 @@ function toFailure(err) {
     return { msg: msg, mode: "notice", initialized: true };
 }
 var ReactCanvas = function (_a) {
-    var engine = _a.engine, pck = _a.pck, wasm = _a.wasm, _b = _a.width, width = _b === void 0 ? 480 : _b, _c = _a.height, height = _c === void 0 ? 300 : _c;
+    var engine = _a.engine, pck = _a.pck, wasm = _a.wasm, _b = _a.width, width = _b === void 0 ? 480 : _b, _c = _a.height, height = _c === void 0 ? 300 : _c, config = _a.config;
     var canvasRef = useRef(null);
     var _d = useState(null), instance = _d[0], setInstance = _d[1];
     var _e = useLoading(), loadingState = _e[0], changeLoadingState = _e[1];
     useEffect(function () {
         if (engine.isWebGLAvailable()) {
             changeLoadingState({ mode: "indeterminate" });
-            setInstance(new engine());
+            setInstance(new engine(config));
         }
         else {
             changeLoadingState(toFailure("WebGL not available"));

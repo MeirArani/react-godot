@@ -2,65 +2,73 @@
  * @function ReactGodot
  */
 
-import './styles.css'
+import "./styles.css";
 
-import * as React from 'react'
+import * as React from "react";
 
-import { FunctionComponent, useEffect, useRef, useState } from 'react'
+import { FunctionComponent, useEffect, useRef, useState } from "react";
 
-import AsyncLoading from './AsyncLoading'
-import ReactCanvas from './ReactCanvas'
+import AsyncLoading from "./AsyncLoading";
+import ReactCanvas from "./ReactCanvas";
 
-import type { Engine, EngineLoaderDescription } from './typings'
+import type { Engine, EngineLoaderDescription } from "./typings";
 
 const useScript = (url: string, onLoad: () => void) => {
   useEffect(() => {
-    const script = document.createElement('script')
+    const script = document.createElement("script");
 
-    script.src = url
-    script.async = true
-    script.onload = onLoad
+    script.src = url;
+    script.async = true;
+    script.onload = onLoad;
 
-    document.body.appendChild(script)
+    document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script)
-    }
-  }, [url])
-}
+      document.body.removeChild(script);
+    };
+  }, [url]);
+};
 
 export interface ReactGodotProps {
-  script: EngineLoaderDescription
-  pck: string
-  wasm?: string
-  resize?: boolean
-  width?: number
-  height?: number
-  params?: any
+  script: EngineLoaderDescription;
+  pck: string;
+  wasm?: string;
+  resize?: boolean;
+  width?: number;
+  height?: number;
+  config?: any;
 }
 
 const ReactGodot: FunctionComponent<ReactGodotProps> = (props) => {
-  const { script, pck, wasm, resize = false, width, height, params } = props
-  const outerRef = useRef<HTMLDivElement>(null)
-  const [engine, setEngine] = useState<Engine>(null)
-  const [dimensions, setDimensions] = useState([width, height])
+  const {
+    script,
+    pck,
+    wasm,
+    resize = false,
+    width,
+    height,
+    config: params,
+  } = props;
+  const outerRef = useRef<HTMLDivElement>(null);
+  const [engine, setEngine] = useState<Engine>(null);
+  const [dimensions, setDimensions] = useState([width, height]);
 
   useScript(script, () => {
-    const scope = window as any
-    setEngine(() => scope.Engine)
-  })
+    const scope = window as any;
+    setEngine(() => scope.Engine);
+  });
 
   useEffect(() => {
-    if (resize && (outerRef.current != null)) {
+    if (resize && outerRef.current != null) {
       setDimensions([
         outerRef.current.clientWidth,
-        outerRef.current.clientHeight
-      ])
+        outerRef.current.clientHeight,
+      ]);
     }
-  }, [resize, outerRef.current])
+  }, [resize, outerRef.current]);
 
   return (
-    <div id='wrap' ref={outerRef}>
+    <div id="wrap" ref={outerRef}>
       <AsyncLoading>
         {engine && (
           <ReactCanvas
@@ -69,12 +77,12 @@ const ReactGodot: FunctionComponent<ReactGodotProps> = (props) => {
             wasm={wasm}
             width={dimensions[0]}
             height={dimensions[1]}
-            params={params}
+            config={params}
           />
         )}
       </AsyncLoading>
     </div>
-  )
-}
+  );
+};
 
-export default ReactGodot
+export default ReactGodot;

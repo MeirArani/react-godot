@@ -1,3 +1,3 @@
-export type Engine = any
+export type Engine = any;
 
-export type EngineLoaderDescription = string
+export type EngineLoaderDescription = string;

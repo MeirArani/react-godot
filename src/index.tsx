@@ -39,6 +39,36 @@ export interface ReactGodotProps {
   config?: any;
 }
 
+export interface FileSizeDictionary {
+  [filename: string]: number;
+}
+
+export interface GodotEngineConfig {
+  canvas?: HTMLCanvasElement | null;
+  executable?: string;
+  mainPack?: string;
+  locale?: string;
+  canvasResizePolicy?: number;
+  persistentPaths?: string[];
+  persistentDrops?: string[];
+  experimentalVK?: boolean;
+  focusCanvas?: boolean;
+  serviceWorker?: string;
+  gdextensionLibs?: string[];
+  fileSizes?: FileSizeDictionary;
+  emscriptenPoolSize?: number;
+  godotPoolSize?: number;
+  args?: string[];
+  ensureCrossOriginIsolationHeaders?: boolean;
+  unloadAfterInit?: boolean;
+  libs?: string[];
+  onExecute?: (path: string, executeArgs: Array<string>) => void;
+  onExit?: (status_code: number) => void;
+  onProgress?: (current: number, total: number) => void;
+  onPrint?: (...var_args: any[]) => void;
+  onPrintError?: (...var_args: any[]) => void;
+}
+
 const ReactGodot: FunctionComponent<ReactGodotProps> = (props) => {
   const {
     script,
@@ -47,7 +77,7 @@ const ReactGodot: FunctionComponent<ReactGodotProps> = (props) => {
     resize = false,
     width,
     height,
-    config: params,
+    config: config,
   } = props;
   const outerRef = useRef<HTMLDivElement>(null);
   const [engine, setEngine] = useState<Engine>(null);
@@ -77,7 +107,7 @@ const ReactGodot: FunctionComponent<ReactGodotProps> = (props) => {
             wasm={wasm}
             width={dimensions[0]}
             height={dimensions[1]}
-            config={params}
+            config={config}
           />
         )}
       </AsyncLoading>

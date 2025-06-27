@@ -10,38 +10,9 @@ import {
 
 import { useLoading } from "./AsyncLoading";
 import type { Engine } from "./typings";
+import { GodotEngineConfig } from "./index";
 
-export interface FileSizeDictionary {
-  [filename: string]: number;
-}
-
-export interface GodotEngineConfig {
-  canvas?: HTMLCanvasElement;
-  executable?: string;
-  mainPack?: string;
-  locale?: string;
-  canvasResizePolicy?: number;
-  persistentPaths?: string[];
-  persistentDrops?: string[];
-  experimentalVK?: boolean;
-  focusCanvas?: boolean;
-  serviceWorker?: string;
-  gdextensionLibs?: string[];
-  fileSizes?: FileSizeDictionary;
-  emscriptenPoolSize?: number;
-  godotPoolSize?: number;
-  args?: string[];
-  ensureCrossOriginIsolationHeaders?: boolean;
-  unloadAfterInit?: boolean;
-  libs?: string[];
-  onExecute?: (path: string, executeArgs: Array<string>) => Function;
-  onExit?: (status_code: number) => Function;
-  onProgress?: (current: number, total: number) => Function;
-  onPrint?: (...var_args: any[]) => Function;
-  onPrintError?: (...var_args: any[]) => Function;
-}
-
-export interface ReactEngineProps {
+export interface CanvasProps {
   engine: Engine;
   pck: string;
   wasm?: string;
@@ -57,7 +28,7 @@ function toFailure(err: any) {
   return { msg, mode: "notice", initialized: true };
 }
 
-const ReactCanvas: FunctionComponent<ReactEngineProps> = ({
+const ReactCanvas: FunctionComponent<CanvasProps> = ({
   engine,
   pck,
   wasm,
@@ -86,6 +57,14 @@ const ReactCanvas: FunctionComponent<ReactEngineProps> = ({
     }
   }, []);
 
+  //Default config
+  config = config ? config : {};
+
+  config.executable = wasm?.replace(/\.wasm$/i, "");
+  config.canvas = canvasRef.current;
+  config.mainPack = pck;
+  config.onProgress = progressFunc;
+
   useEffect(() => {
     if (instance != null) {
       const olderGodot = typeof instance.setProgressFunc === "function";
@@ -101,17 +80,7 @@ const ReactCanvas: FunctionComponent<ReactEngineProps> = ({
       }
 
       instance
-        .startGame(
-          olderGodot
-            ? pck
-            : {
-                executable: wasm?.replace(/\.wasm$/i, ""),
-                canvas: canvasRef.current,
-                mainPack: pck,
-                canvasResizePolicy: 0,
-                onProgress: progressFunc,
-              }
-        )
+        .startGame(olderGodot ? pck : config)
         .then(() => {
           changeLoadingState({ mode: "hidden", initialized: true });
         })

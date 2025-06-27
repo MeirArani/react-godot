@@ -28,6 +28,12 @@ var ReactCanvas = function (_a) {
             changeLoadingState({ mode: "indeterminate" });
         }
     }, []);
+    //Default config
+    config = config ? config : {};
+    config.executable = wasm === null || wasm === void 0 ? void 0 : wasm.replace(/\.wasm$/i, "");
+    config.canvas = canvasRef.current;
+    config.mainPack = pck;
+    config.onProgress = progressFunc;
     useEffect(function () {
         if (instance != null) {
             var olderGodot = typeof instance.setProgressFunc === "function";
@@ -37,15 +43,7 @@ var ReactCanvas = function (_a) {
                 return;
             }
             instance
-                .startGame(olderGodot
-                ? pck
-                : {
-                    executable: wasm === null || wasm === void 0 ? void 0 : wasm.replace(/\.wasm$/i, ""),
-                    canvas: canvasRef.current,
-                    mainPack: pck,
-                    canvasResizePolicy: 0,
-                    onProgress: progressFunc,
-                })
+                .startGame(olderGodot ? pck : config)
                 .then(function () {
                 changeLoadingState({ mode: "hidden", initialized: true });
             })

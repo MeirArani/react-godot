@@ -2,9 +2,24 @@
   "name": "react-godot",
   "version": "1.0.0",
   "description": "Load a webassembly build of the Godot engine and Bootstrap packed games from within the react component tree",
-  "author": "d3dc",
+  "contributors": [
+    {
+      "name": "d3dc",
+      "url": "https://github.com/d3dc"
+    },
+    {
+      "name": "Eric Wang",
+      "email": "ezwang1@gmail.com",
+      "url": "https://github.com/ezwang"
+    },
+    {
+      "name": "Meir Arani",
+      "email": "myrrh@laughingstock.me",
+      "url": "https://myrrh.me"
+    }
+  ],
   "license": "MIT",
-  "repository": "github:d3dc/react-godot",
+  "repository": "github:MeirArani/react-godot",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "jsnext:main": "dist/index.js",
@@ -14,15 +29,10 @@
     "npm": ">=5"
   },
   "scripts": {
-    "test": "react-scripts test",
     "build": "NODE_ENV=production tsc",
     "build:css": "cp src/styles.css dist/",
     "start": "NODE_ENV=development tsc -w",
-    "prepare": "npm run build && npm run build:css",
-    "predeploy": "cd example && npm install && npm run build"
-  },
-  "dependencies": {
-    "react-godot": "."
+    "prepare": "npm run build && npm run build:css"
   },
   "peerDependencies": {
     "react": "^16.12.0 || ^17 || ^18",

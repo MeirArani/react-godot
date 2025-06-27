@@ -5,7 +5,6 @@
       "name": "react-godot",
       "dependencies": {
         "react-godot": ".",
-        "react-godot": ".",
       },
       "devDependencies": {
         "@testing-library/jest-dom": "^4.2.4",
@@ -127,8 +126,6 @@
 
     "react-godot": ["react-godot@file:", { "dependencies": { "react-godot": "." }, "devDependencies": { "@testing-library/jest-dom": "^4.2.4", "@testing-library/react": "^9.4.0", "@testing-library/user-event": "^8.0.3", "@types/jest": "^24.0.25", "@types/react": "^16.9.17", "@types/react-dom": "^16.9.4", "react": "^16.12.0", "react-dom": "^16.12.0", "typescript": "^3.7.4" }, "peerDependencies": { "react": "^16.12.0 || ^17 || ^18", "react-dom": "^16.12.0 || ^17 || ^18" } }],
 
-    "react-godot": ["react-godot@file:", { "dependencies": { "react-godot": "." }, "devDependencies": { "@testing-library/jest-dom": "^4.2.4", "@testing-library/react": "^9.4.0", "@testing-library/user-event": "^8.0.3", "@types/jest": "^24.0.25", "@types/react": "^16.9.17", "@types/react-dom": "^16.9.4", "react": "^16.12.0", "react-dom": "^16.12.0", "typescript": "^3.7.4" }, "peerDependencies": { "react": "^16.12.0 || ^17 || ^18", "react-dom": "^16.12.0 || ^17 || ^18" } }],
-
     "react-is": ["react-is@16.13.1", "", {}, "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="],
 
     "redent": ["redent@3.0.0", "", { "dependencies": { "indent-string": "^4.0.0", "strip-indent": "^3.0.0" } }, "sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg=="],
@@ -156,8 +153,6 @@
     "@testing-library/dom/pretty-format": ["pretty-format@25.5.0", "", { "dependencies": { "@jest/types": "^25.5.0", "ansi-regex": "^5.0.0", "ansi-styles": "^4.0.0", "react-is": "^16.12.0" } }, "sha512-kbo/kq2LQ/A/is0PQwsEHM7Ca6//bGPPvU6UnsdDRSKTWxT/ru/xb88v4BJf6a69H+uTytOEsTusT9ksd/1iWQ=="],
 
     "@types/testing-library__react/pretty-format": ["pretty-format@25.5.0", "", { "dependencies": { "@jest/types": "^25.5.0", "ansi-regex": "^5.0.0", "ansi-styles": "^4.0.0", "react-is": "^16.12.0" } }, "sha512-kbo/kq2LQ/A/is0PQwsEHM7Ca6//bGPPvU6UnsdDRSKTWxT/ru/xb88v4BJf6a69H+uTytOEsTusT9ksd/1iWQ=="],
-
-    "react-godot/react-godot": ["react-godot@file:.", {}],
 
     "react-godot/react-godot": ["react-godot@file:.", {}],
 

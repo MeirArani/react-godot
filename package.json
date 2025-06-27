@@ -1,6 +1,6 @@
 {
   "name": "react-godot-4",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Load a webassembly build of the Godot engine and Bootstrap packed games from within the react component tree",
   "contributors": [
     {

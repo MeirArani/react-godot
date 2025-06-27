@@ -2,8 +2,6 @@
 
 > Load a webassembly build of Godot and Bootstrap packed games from within the react component tree.
 
-[![NPM](https://img.shields.io/npm/v/react-godot.svg)](https://www.npmjs.com/package/react-godot) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 ## Install
 
 ```bash

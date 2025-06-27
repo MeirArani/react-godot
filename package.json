@@ -1,5 +1,5 @@
 {
-  "name": "react-godot",
+  "name": "react-godot-4",
   "version": "1.0.0",
   "description": "Load a webassembly build of the Godot engine and Bootstrap packed games from within the react component tree",
   "contributors": [
@@ -19,7 +19,7 @@
     }
   ],
   "license": "MIT",
-  "repository": "github:MeirArani/react-godot",
+  "repository": "github:MeirArani/react-godot-4",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "jsnext:main": "dist/index.js",
